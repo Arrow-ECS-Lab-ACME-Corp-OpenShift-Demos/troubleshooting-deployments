@@ -1,0 +1,37 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: demo-busybox
+  namespace: openshift
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: 'busybox'
+      importPolicy:
+        scheduled: true
+        importMode: PreserveOriginal
+      referencePolicy:
+        type: Source
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: demo-nginx
+  namespace: openshift
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: 'nginx'
+      importPolicy:
+        scheduled: true
+        importMode: PreserveOriginal
+      referencePolicy:
+        type: Source

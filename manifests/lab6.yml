@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: openshift-bootcamp-ts6
+  labels:
+    app: openshift-bootcamp-ts6
+spec:
+  selector:
+    matchLabels:
+      app: openshift-bootcamp-ts6
+  template:
+    metadata:
+      labels:
+        app: openshift-bootcamp-ts6
+    spec:
+      containers:
+        - name: cli
+          image: 'image-registry.openshift-image-registry.svc.cluster.local:5000/openshift/cli'
+          command: ["sleep", "9999"]
+          volumeMounts:
+            - mountPath: "/data"
+              name: storage
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: not-existing-pvc

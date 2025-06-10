@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: openshift-bootcamp-ts3
+  labels:
+    app: openshift-bootcamp-ts3
+spec:
+  selector:
+    matchLabels:
+      app: openshift-bootcamp-ts3
+  template:
+    metadata:
+      labels:
+        app: openshift-bootcamp-ts3
+    spec:
+      containers:
+        - name: cli
+          image: 'image-registry.openshift-image-registry.svc.cluster.local:5000/openshift/cli'
+          command: ["nonexistentcommand"]

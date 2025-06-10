@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: openshift-bootcamp-ts9
+  labels:
+    app: openshift-bootcamp-ts9
+spec:
+  selector:
+    matchLabels:
+      app: openshift-bootcamp-ts9
+  template:
+    metadata:
+      labels:
+        app: openshift-bootcamp-ts9
+    spec:
+      containers:
+        - name: app
+          image: 'image-registry.openshift-image-registry.svc.cluster.local:5000/openshift/cli'
+          command: ["curl", "http://internal-service:8080"]
